@@ -1,20 +1,25 @@
 export default function handler(req, res) {
-  res.setHeader("Content-Type", "application/json");
+  res.setHeader("Content-Type", "application/oauth-authz-req+json");
+
   res.status(200).json({
     response_type: "vp_token",
     client_id: "https://oid4vp-test.vercel.app",
-    redirect_uri: "https://oid4vp-test.vercel.app/api/callback",
+    redirect_uri: "https://oid4vp-test.vercel.app/callback", // fake for now
     scope: "openid",
-    state: "abc123",
-    nonce: "xyz456",
+    state: "123456",
+    nonce: "abcdef",
     presentation_definition: {
       id: "age-country-check",
       input_descriptors: [
         {
           id: "age_check",
           name: "Age Verification",
-          purpose: "We need to verify your age is over 18",
-          schema: [{ uri: "https://schema.org/Person" }],
+          purpose: "You must be 18+",
+          schema: [
+            {
+              uri: "https://schema.org/Person",
+            },
+          ],
           constraints: {
             fields: [
               {
@@ -31,8 +36,12 @@ export default function handler(req, res) {
         {
           id: "country_check",
           name: "Country Verification",
-          purpose: "We need to verify you are from Germany",
-          schema: [{ uri: "https://schema.org/Person" }],
+          purpose: "Must be from Germany",
+          schema: [
+            {
+              uri: "https://schema.org/Person",
+            },
+          ],
           constraints: {
             fields: [
               {
