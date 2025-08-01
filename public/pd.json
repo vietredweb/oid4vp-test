@@ -1,38 +1,31 @@
 {
-  "id": "vp-presentation-definition",
+  "id": "pid",
   "input_descriptors": [
     {
-      "id": "identity_input",
-      "name": "Age and Country Check",
-      "purpose": "Verify that the user is over 18 and from an allowed country",
+      "id": "pid_credential",
+      "format": {
+        "vc+sd-jwt": {
+          "sd-jwt_alg_values": ["ES256", "ES256K", "EdDSA"],
+          "kb-jwt_alg_values": ["ES256", "ES256K", "EdDSA"]
+        }
+      },
       "constraints": {
         "fields": [
           {
-            "path": ["$.credentialSubject.age"],
+            "path": ["$.vct"],
             "filter": {
-              "type": "number",
-              "minimum": 18
+              "type": "string",
+              "const": "eu.europa.ec.eudi.pid.1"
             }
           },
           {
-            "path": ["$.credentialSubject.country"],
-            "filter": {
-              "type": "string",
-              "pattern": "^(VN|US|DE|FR)$"
-            }
+            "path": ["$.family_name"]
+          },
+          {
+            "path": ["$.given_name"]
           }
         ]
-      },
-      "format": {
-        "jwt_vc": {
-          "alg": ["ES256", "ES256K"]
-        }
       }
     }
-  ],
-  "format": {
-    "jwt_vc": {
-      "alg": ["ES256", "ES256K"]
-    }
-  }
+  ]
 }

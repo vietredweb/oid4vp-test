@@ -1,5 +1,6 @@
 {
-  "client_id": "https://oid4vp-test.vercel.app",
+  "type": "openid4vp",
+  "client_id": "x509_san_dns:oid4vp-test.vercel.app",
   "response_type": "vp_token",
   "redirect_uri": "https://oid4vp-test.vercel.app/callback",
   "scope": "openid",
@@ -11,6 +12,7 @@
       }
     }
   },
-  "state": "1234567890",
-  "nonce": "0987654321"
+  "response_mode": "direct_post",
+  "state": "123456",
+  "nonce": "100"
 }
