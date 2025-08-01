@@ -1,7 +1,7 @@
 {
   "response_type": "vp_token",
-  "client_id": "tps://oid4vp-test.vercel.app",
-  "redirect_uri": "tps://oid4vp-test.vercel.app/callback",
+  "client_id": "https://oid4vp-test.vercel.app",
+  "redirect_uri": "https://oid4vp-test.vercel.app/callback",
   "scope": "openid",
   "state": "abc123",
   "nonce": "xyz789",
