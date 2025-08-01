@@ -1,10 +1,10 @@
 {
-  "id": "age-country-check",
+  "id": "vp-presentation-definition",
   "input_descriptors": [
     {
-      "id": "age-country-credential",
+      "id": "identity_input",
       "name": "Age and Country Check",
-      "purpose": "To verify the user's age and country",
+      "purpose": "Verify that the user is over 18 and from an allowed country",
       "constraints": {
         "fields": [
           {
@@ -18,7 +18,7 @@
             "path": ["$.credentialSubject.country"],
             "filter": {
               "type": "string",
-              "pattern": "^(US|VN|DE|FR)$"
+              "pattern": "^(VN|US|DE|FR)$"
             }
           }
         ]
@@ -29,5 +29,10 @@
         }
       }
     }
-  ]
+  ],
+  "format": {
+    "jwt_vc": {
+      "alg": ["ES256", "ES256K"]
+    }
+  }
 }
