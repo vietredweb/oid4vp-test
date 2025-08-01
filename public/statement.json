@@ -1,4 +1,11 @@
 {
+  "client_id": "https://yourdomain.com",
+  "response_type": "vp_token",
+  "response_mode": "direct_post",
+  "scope": "openid",
+  "redirect_uri": "https://yourdomain.com/callback",
+  "nonce": "1234567890",
+  "state": "test-state-xyz",
   "presentation_definition": {
     "id": "vp-request-123",
     "input_descriptors": [
@@ -27,8 +34,5 @@
         }
       }
     ]
-  },
-  "client_id": "https://yourdomain.com",
-  "nonce": "1234567890",
-  "response_mode": "direct_post"
+  }
 }

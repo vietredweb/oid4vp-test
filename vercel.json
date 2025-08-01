@@ -1,0 +1,13 @@
+{
+  "headers": [
+    {
+      "source": "/statement.json",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/oauth-authz-req+json"
+        }
+      ]
+    }
+  ]
+}
