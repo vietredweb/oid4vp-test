@@ -1,0 +1,33 @@
+{
+  "id": "age-country-check",
+  "input_descriptors": [
+    {
+      "id": "age-country-credential",
+      "name": "Age and Country Check",
+      "purpose": "To verify the user's age and country",
+      "constraints": {
+        "fields": [
+          {
+            "path": ["$.credentialSubject.age"],
+            "filter": {
+              "type": "number",
+              "minimum": 18
+            }
+          },
+          {
+            "path": ["$.credentialSubject.country"],
+            "filter": {
+              "type": "string",
+              "pattern": "^(US|VN|DE|FR)$"
+            }
+          }
+        ]
+      },
+      "format": {
+        "jwt_vc": {
+          "alg": ["ES256", "ES256K"]
+        }
+      }
+    }
+  ]
+}
