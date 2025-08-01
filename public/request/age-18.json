@@ -1,62 +1,35 @@
 {
-  "aud": "https://self-issued.me/v2",
-  "client_id": "x509_san_dns:talao.co",
-  "client_metadata": {
-    "id_token_signing_alg_values_supported": ["ES256", "ES256k", "EdDSA"],
-    "id_token_types_supported": ["subject_signed_id_token"],
-    "redirect_uris": [
-      "https://talao.co/verifier/wallet/endpoint/d1201422-6eb9-11f0-b9b5-0a1628958560"
-    ],
-    "request_parameter_supported": false,
-    "request_uri_parameter_supported": true,
-    "response_types_supported": ["id_token", "vp_token"],
-    "scopes_supported": ["openid"],
-    "subject_syntax_types_discriminations": [
-      "did:key:jwk_jcs-pub",
-      "did:ebsi:v1"
-    ],
-    "subject_syntax_types_supported": [
-      "urn:ietf:params:oauth:jwk-thumbprint",
-      "did:key",
-      "did:ebsi",
-      "did:ethr"
-    ],
-    "subject_trust_frameworks_supported": ["ebsi"],
-    "vp_formats": {
-      "jwt_vp": {
-        "alg_values_supported": ["ES256", "ES256K", "EdDSA"]
-      },
-      "jwt_vp_json": {
-        "alg_values_supported": ["ES256", "ES256K", "EdDSA"]
-      },
-      "ldp_vc": {
-        "proof_type": [
-          "JsonWebSignature2020",
-          "Ed25519Signature2018",
-          "EcdsaSecp256k1Signature2019",
-          "RsaSignature2018"
-        ]
-      },
-      "ldp_vp": {
-        "proof_type": [
-          "JsonWebSignature2020",
-          "Ed25519Signature2018",
-          "EcdsaSecp256k1Signature2019",
-          "RsaSignature2018"
-        ]
-      },
-      "vc+sd-jwt": {
-        "kb-jwt_alg_values": ["ES256", "ES256K", "EdDSA"],
-        "sd-jwt_alg_values": ["ES256", "ES256K", "EdDSA"]
-      }
+  "authorization_request": {
+    "response_type": "vp_token",
+    "client_id": "https://oid4vp-test.vercel.app",
+    "redirect_uri": "https://oid4vp-test.vercel.app/callback",
+    "scope": "openid",
+    "state": "abc123",
+    "nonce": "xyz789",
+    "presentation_definition": {
+      "id": "age-check-18",
+      "input_descriptors": [
+        {
+          "id": "age-verification",
+          "name": "Verify age ≥ 18",
+          "purpose": "Ensure the user is at least 18 years old",
+          "constraints": {
+            "fields": [
+              {
+                "path": [
+                  "$.credentialSubject.birthDate",
+                  "$.vc.credentialSubject.birthDate"
+                ],
+                "filter": {
+                  "type": "string",
+                  "format": "date",
+                  "maximum": "2007-08-01"
+                }
+              }
+            ]
+          }
+        }
+      ]
     }
-  },
-  "exp": 1754041480.504394,
-  "iss": "https://talao.co",
-  "nonce": "100",
-  "presentation_definition_uri": "https://talao.co/verifier/wallet/presentation_definition_uri/rxbypnwhxc",
-  "response_mode": "direct_post",
-  "response_type": "vp_token",
-  "response_uri": "https://talao.co/verifier/wallet/endpoint/d1201422-6eb9-11f0-b9b5-0a1628958560",
-  "state": "d1202a7f-6eb9-11f0-9c51-0a1628958560"
+  }
 }
