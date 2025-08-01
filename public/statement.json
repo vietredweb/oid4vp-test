@@ -3,16 +3,20 @@
   "client_id": "https://oid4vp-test.vercel.app",
   "redirect_uri": "https://oid4vp-test.vercel.app/api/callback",
   "scope": "openid",
-  "state": "random123",
-  "nonce": "nonce123",
+  "state": "abc123",
+  "nonce": "xyz456",
   "presentation_definition": {
     "id": "age-country-check",
     "input_descriptors": [
       {
         "id": "age_check",
-        "schema": {
-          "uri": ["https://schema.org/Person"]
-        },
+        "name": "Age Verification",
+        "purpose": "We need to verify your age is over 18",
+        "schema": [
+          {
+            "uri": "https://schema.org/Person"
+          }
+        ],
         "constraints": {
           "fields": [
             {
@@ -28,9 +32,13 @@
       },
       {
         "id": "country_check",
-        "schema": {
-          "uri": ["https://schema.org/Person"]
-        },
+        "name": "Country Verification",
+        "purpose": "We need to verify you are from Germany",
+        "schema": [
+          {
+            "uri": "https://schema.org/Person"
+          }
+        ],
         "constraints": {
           "fields": [
             {
