@@ -1,35 +1,51 @@
 {
-  "authorization_request": {
-    "response_type": "vp_token",
-    "client_id": "https://oid4vp-test.vercel.app",
-    "redirect_uri": "https://oid4vp-test.vercel.app/callback",
-    "scope": "openid",
-    "state": "abc123",
-    "nonce": "xyz789",
-    "presentation_definition": {
-      "id": "age-check-18",
-      "input_descriptors": [
-        {
-          "id": "age-verification",
-          "name": "Verify age ≥ 18",
-          "purpose": "Ensure the user is at least 18 years old",
-          "constraints": {
-            "fields": [
-              {
-                "path": [
-                  "$.credentialSubject.birthDate",
-                  "$.vc.credentialSubject.birthDate"
-                ],
-                "filter": {
-                  "type": "string",
-                  "format": "date",
-                  "maximum": "2007-08-01"
-                }
+  "aud": "https://self-issued.me/v2",
+  "client_id": "x509_san_dns:oid4vp-test.vercel.app",
+  "response_type": "vp_token",
+  "response_mode": "direct_post",
+  "response_uri": "https://oid4vp-test.vercel.app/api/callback",
+  "state": "test-state-001",
+  "nonce": "random-nonce-001",
+  "client_metadata": {
+    "redirect_uris": ["https://oid4vp-test.vercel.app/api/callback"],
+    "vp_formats": {
+      "vc+sd-jwt": {
+        "kb-jwt_alg_values": ["ES256", "ES256K", "EdDSA"],
+        "sd-jwt_alg_values": ["ES256", "ES256K", "EdDSA"]
+      }
+    },
+    "response_types_supported": ["vp_token"],
+    "subject_syntax_types_supported": ["did:key", "did:ebsi"]
+  },
+  "presentation_definition": {
+    "id": "age-check-18",
+    "input_descriptors": [
+      {
+        "id": "age-verification",
+        "name": "Verify age ≥ 18",
+        "purpose": "Ensure the user is at least 18 years old",
+        "constraints": {
+          "fields": [
+            {
+              "path": [
+                "$.credentialSubject.birthDate",
+                "$.vc.credentialSubject.birthDate"
+              ],
+              "filter": {
+                "type": "string",
+                "format": "date",
+                "maximum": "2007-08-01"
               }
-            ]
+            }
+          ]
+        },
+        "format": {
+          "vc+sd-jwt": {
+            "kb-jwt_alg_values": ["ES256", "ES256K", "EdDSA"],
+            "sd-jwt_alg_values": ["ES256", "ES256K", "EdDSA"]
           }
         }
-      ]
-    }
+      }
+    ]
   }
 }
