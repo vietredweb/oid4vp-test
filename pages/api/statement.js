@@ -10,51 +10,28 @@ export default function handler(req, res) {
     JSON.stringify({
       response_type: "vp_token",
       client_id: "https://oid4vp-test.vercel.app",
-      redirect_uri: "https://oid4vp-test.vercel.app/callback", // fake for now
+      redirect_uri: "https://oid4vp-test.vercel.app/callback",
       scope: "openid",
-      state: "123456",
-      nonce: "abcdef",
+      state: "abc123",
+      nonce: "xyz789",
       presentation_definition: {
-        id: "age-country-check",
+        id: "age-check-18",
         input_descriptors: [
           {
-            id: "age_check",
-            name: "Age Verification",
-            purpose: "You must be 18+",
-            schema: [
-              {
-                uri: "https://schema.org/Person",
-              },
-            ],
+            id: "age-verification",
+            name: "Verify age ≥ 18",
+            purpose: "Ensure the user is at least 18 years old",
             constraints: {
               fields: [
                 {
-                  path: ["$.birthDate"],
+                  path: [
+                    "$.credentialSubject.birthDate",
+                    "$.vc.credentialSubject.birthDate",
+                  ],
                   filter: {
                     type: "string",
                     format: "date",
                     maximum: "2007-08-01",
-                  },
-                },
-              ],
-            },
-          },
-          {
-            id: "country_check",
-            name: "Country Verification",
-            purpose: "Must be from Germany",
-            schema: [
-              {
-                uri: "https://schema.org/Person",
-              },
-            ],
-            constraints: {
-              fields: [
-                {
-                  path: ["$.address.addressCountry"],
-                  filter: {
-                    type: "string",
-                    const: "DE",
                   },
                 },
               ],
