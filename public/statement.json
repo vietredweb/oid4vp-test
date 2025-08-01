@@ -1,33 +1,43 @@
 {
-  "client_id": "https://yourdomain.com",
   "response_type": "vp_token",
-  "response_mode": "direct_post",
+  "client_id": "https://oid4vp-test.vercel.app",
+  "redirect_uri": "https://oid4vp-test.vercel.app/api/callback",
   "scope": "openid",
-  "redirect_uri": "https://yourdomain.com/callback",
-  "nonce": "1234567890",
-  "state": "test-state-xyz",
+  "state": "random123",
+  "nonce": "nonce123",
   "presentation_definition": {
-    "id": "vp-request-123",
+    "id": "age-country-check",
     "input_descriptors": [
       {
-        "id": "age-country-check",
-        "name": "Age and Country Verification",
-        "purpose": "Verify age >= 18 and residency in EU",
+        "id": "age_check",
+        "schema": {
+          "uri": ["https://schema.org/Person"]
+        },
         "constraints": {
           "fields": [
             {
-              "path": ["$.credentialSubject.birthDate"],
+              "path": ["$.birthDate"],
               "filter": {
                 "type": "string",
                 "format": "date",
-                "minimum": "2006-01-01"
+                "maximum": "2007-08-01"
               }
-            },
+            }
+          ]
+        }
+      },
+      {
+        "id": "country_check",
+        "schema": {
+          "uri": ["https://schema.org/Person"]
+        },
+        "constraints": {
+          "fields": [
             {
-              "path": ["$.credentialSubject.address.country"],
+              "path": ["$.address.addressCountry"],
               "filter": {
                 "type": "string",
-                "enum": ["FR", "DE", "DK", "NL", "BE"]
+                "const": "DE"
               }
             }
           ]
