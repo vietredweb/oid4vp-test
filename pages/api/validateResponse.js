@@ -14,7 +14,7 @@ export default async function handler(req, res) {
 
   try {
     const response = await fetch(
-      "https://demo.digitalcredentials.dev/api/getRequest",
+      "https://digital-credentials.dev/api/validateResponse",
       {
         method: "POST",
         headers: {
